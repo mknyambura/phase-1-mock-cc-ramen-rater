@@ -13,7 +13,7 @@ const form = document.querySelector('form#new-ramen');
 const details = document.querySelector('div#ramen-detail');
 
 const image = document.querySelector('img.detail-image');
-const ramenName = document.querySelector('h2.name');
+const Name = document.querySelector('h2.name');
 const restaurant = document.querySelector('h3.restaurant');
 const rating = document.querySelector('span#rating-display');
 const comment = document.querySelector('p#comment-display');
@@ -21,7 +21,7 @@ const comment = document.querySelector('p#comment-display');
 const ramenContainer = []
 const ramenSubmit = []
 
-let submitCounter = 10;
+let counter = 10;
 
 function ramenCollector(param) {
     param.forEach( (ramenObj, i) => {
@@ -59,7 +59,7 @@ function ramenDetails(id = 0) {
         container = ramenContainer;
     }
     image.src = container[id].image;
-    ramenName.innerText = container[id].name;
+    Name.innerText = container[id].name;
     restaurant.innerText = container[id].restaurant;
     rating.innerText = container[id].rating;
     comment.innerText = container[id].comment;
@@ -74,7 +74,7 @@ function newRamen() {
 
     const newRamen = {};
         newRamen.comment = newComment;
-        newRamen.id = submitCounter;
+        newRamen.id = counter;
         newRamen.image = newImage;
         newRamen.name = newName;
         newRamen.rating = newRating;
@@ -84,7 +84,7 @@ function newRamen() {
 }
 
 menu.addEventListener('click', e => {
-    details(e.target.id);
+    ramenDetails(e.target.id);
 })
 
 document.addEventListener('submit', e => {
@@ -92,5 +92,5 @@ document.addEventListener('submit', e => {
     newRamen();
     ramenBuilder(ramenSubmit[ramenSubmit.length-1])
     form.reset();
-    submitCounter++
+    counter++
 })
